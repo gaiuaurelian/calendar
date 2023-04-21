@@ -1,3 +1,8 @@
 .date-header:not(:first-of-type) {
-    margin-left: -1px;
+  margin-left: -1px;
+}
+
+.current-day-header {
+  background-color: var(--true-blue);
+  color: white;
 }

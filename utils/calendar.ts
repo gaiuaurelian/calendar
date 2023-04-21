@@ -36,3 +36,21 @@ export const getCurrentWeekDays = (currentDate: Date) => {
 
   return daysOfWeek;
 };
+
+export const isCurrentDay = (date: Date) => {
+  return date.toDateString() === new Date().toDateString();
+};
+
+export const getDayOfWeek = (date: Date) => {
+  const daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  const dayOfWeek = daysOfWeek[date.getDay()];
+  return dayOfWeek;
+};
