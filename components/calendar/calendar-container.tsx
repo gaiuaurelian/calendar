@@ -1,42 +1,30 @@
 'use client';
-
-import { getDaysInMonth } from '@/utils/calendar';
+import { getCurrentWeekDays, getDaysInMonth } from '@/utils/calendar';
 import { useState } from 'react';
+import CalendarNavigation from './calendar-navigation';
+import CalendarDate from './calendar-date';
 
 const CalendarContainer = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const currentMonthString = currentDate.toLocaleString('default', {
-    month: 'long',
+  // const daysInCurrentMonth = getDaysInMonth(currentDate);
+  const daysInCurrentWeek = getCurrentWeekDays(currentDate);
+
+  const daysSections = daysInCurrentWeek.map((day, index) => {
+    return <CalendarDate day={day} key={index} />;
   });
 
-  const handlePreviousMonth = () => {
-    const month = currentDate.getUTCMonth();
-    const newDate = new Date(currentDate.getFullYear(), month, 0);
-    setCurrentDate(newDate);
-  };
-
-  const handleNextMonth = () => {
-    const month = currentDate.getUTCMonth();
-    const newDate = new Date(currentDate.getFullYear(), month + 2, 0);
+  const updateCurrentDate = (newDate: Date) => {
     setCurrentDate(newDate);
   };
 
   return (
     <>
-      <div className="p-4 w-screen flex flex-column justify-evenly items-center">
-        <button
-          className="p-1 px-4 border border-slate-300 border-solid rounded"
-          onClick={handlePreviousMonth}
-        >
-          Prev
-        </button>
-        <span>{currentMonthString}</span>
-        <button
-          className="p-1 px-4 border border-slate-300 border-solid rounded"
-          onClick={handleNextMonth}
-        >
-          Next
-        </button>
+      <CalendarNavigation
+        currentDate={currentDate}
+        onChangedDate={updateCurrentDate}
+      />
+      <div className="flex h-full mt-9">
+        <div className="grid grid-cols-7 w-full">{daysSections}</div>
       </div>
       {/* <span>{currentDate.toDateString()}</span>
       <button onClick={handleNextMonth}>Next</button>

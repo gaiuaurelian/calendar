@@ -1,0 +1,3 @@
+.date-header:not(:first-of-type) {
+    margin-left: -1px;
+}
