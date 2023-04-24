@@ -19,10 +19,7 @@ const CalendarContainer = () => {
 
   return (
     <>
-      <CalendarNavigation
-        currentDate={currentDate}
-        onChangedDate={updateCurrentDate}
-      />
+      <CalendarNavigation onChangedDate={updateCurrentDate} />
       <div className="flex h-full mt-9">
         <div className="grid grid-cols-7 w-full">{daysSections}</div>
       </div>

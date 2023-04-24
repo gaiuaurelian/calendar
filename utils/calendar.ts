@@ -54,3 +54,12 @@ export const getDayOfWeek = (date: Date) => {
   const dayOfWeek = daysOfWeek[date.getDay()];
   return dayOfWeek;
 };
+
+export const getPreviousMonth = (date: Date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  const previousMonth = month === 0 ? 11 : month - 1;
+  const previousYear = previousMonth === 11 ? year - 1 : year;
+  return new Date(previousYear, previousMonth, 1);
+};
